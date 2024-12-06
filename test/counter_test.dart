@@ -1,19 +1,20 @@
+// test/counter_test.dart
 import 'package:flutter_test/flutter_test.dart';
-import 'package:aplicacion_movil2/main.dart';
-
+import 'package:aplicacion_movil2/main.dart'; // Asegúrate de poner el nombre correcto del paquete
 
 void main() {
-  testWidgets('Test de la pantalla de login', (WidgetTester tester) async {
-    // Construir la app
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Contador se incrementa al presionar el botón', (WidgetTester tester) async {
+    // Construir el widget
+    await tester.pumpWidget(MyApp());
 
-    // Buscar un widget específico, como un botón
-    expect(find.text('Entrar'), findsOneWidget);
+    // Verificar que el contador empieza en 0
+    expect(find.text('Contador: 0'), findsOneWidget);
 
-    // Interactuar con el widget (si es necesario)
+    // Tocar el botón y actualizar el widget
+    await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
 
-    // Comprobar los resultados
-    expect(find.text('Usuario o contraseña incorrectos'), findsOneWidget);
+    // Verificar que el contador se ha incrementado
+    expect(find.text('Contador: 1'), findsOneWidget);
   });
 }
