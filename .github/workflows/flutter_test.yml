@@ -1,1 +1,33 @@
 
+name: Flutter Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Checkout del código
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Paso 2: Configurar Flutter
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+
+    # Paso 3: Instalar dependencias de Flutter
+    - name: Install dependencies
+      run: flutter pub get
+
+    # Paso 4: Ejecutar pruebas de Flutter
+    - name: Run Flutter tests
+      run: flutter test
