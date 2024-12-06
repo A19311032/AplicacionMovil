@@ -313,6 +313,61 @@ class _ProductItemState extends State<ProductItem> {
   }
 }
 
+class CartPage extends StatelessWidget {
+  final List<CartItem> cart;
+
+  const CartPage({Key? key, required this.cart}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double total =
+        cart.fold(0, (sum, item) => sum + item.product.price * item.quantity);
+    final formatCurrency = NumberFormat.currency(locale: 'es_MX', symbol: '\$');
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Carrito'),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: cart.length,
+              itemBuilder: (context, index) {
+                final item = cart[index];
+                return ListTile(
+                  leading: Image.network(item.product.imageUrl, height: 50),
+                  title: Text(item.product.name),
+                  subtitle: Text('Cantidad: ${item.quantity}'),
+                  trailing: Text(
+                      formatCurrency.format(item.product.price * item.quantity)),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('Total: ${formatCurrency.format(total)}',
+                style: const TextStyle(fontSize: 20)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CheckoutPage()),
+                );
+              },
+              child: const Text('Realizar Pago'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({Key? key}) : super(key: key);
 
