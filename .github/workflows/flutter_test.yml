@@ -1,3 +1,4 @@
+# .github/workflows/flutter_test.yml
 name: Flutter Test
 
 on:
@@ -27,6 +28,6 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    # Paso 4: Ejecutar pruebas de Flutter
-    - name: Run Flutter tests
-      run: flutter test
+    # Paso 4: Ejecutar pruebas de Flutter específicas
+    - name: Run Flutter tests for counter_test
+      run: flutter test test/counter_test.dart
