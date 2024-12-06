@@ -1,7 +1,7 @@
 // test/counter_test.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tu_proyecto/main.dart'; // Asegúrate de poner el nombre correcto
+import 'package:aplicacion_movil2/main.dart'; // Asegúrate de poner el nombre correcto
 
 void main() {
   testWidgets('Contador se incrementa al presionar el botón', (WidgetTester tester) async {
