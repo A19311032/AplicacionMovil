@@ -1,4 +1,3 @@
-
 name: Flutter Test
 
 on:
@@ -18,11 +17,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Paso 2: Configurar Flutter
+    # Paso 2: Configurar Flutter (especificando una versión)
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: 'stable'
+        flutter-version: '3.7.0'  # Especifica la versión aquí
 
     # Paso 3: Instalar dependencias de Flutter
     - name: Install dependencies
